@@ -1,0 +1,27 @@
+{
+  "name": "recalcular-hash-xml",
+  "version": "1.0.0",
+  "description": "Recalculador de hash MD5 para arquivos XML do padrão TISS - Sistema Unimed/PTU 3.0",
+  "main": "src/recalcular-hash.js",
+  "bin": {
+    "recalcular-hash": "./src/recalcular-hash.js"
+  },
+  "scripts": {
+    "start": "node src/recalcular-hash.js"
+  },
+  "keywords": [
+    "hash",
+    "md5",
+    "xml",
+    "tiss",
+    "unimed",
+    "ptu",
+    "saude"
+  ],
+  "author": "Warreno Hendrick Costa Lima Guimaraes",
+  "license": "MIT",
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "dependencies": {}
+}
