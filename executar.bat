@@ -82,42 +82,10 @@ echo [OK] Node.js portatil instalado com sucesso
 echo.
 
 :CHECK_DEPENDENCIES
-REM Verifica se o package.json existe
+REM Verifica se o package.json existe na raiz
 if not exist "%SCRIPT_DIR%package.json" (
-    echo [INFO] Criando package.json...
-    (
-        echo {
-        echo   "name": "recalcular-hash-xml",
-        echo   "version": "1.0.0",
-        echo   "description": "Recalculador de hash MD5 para arquivos XML TISS",
-        echo   "main": "src/recalcular-hash.js",
-        echo   "dependencies": {}
-        echo }
-    ) > "%SCRIPT_DIR%package.json"
-    echo [OK] package.json criado
-)
-
-REM Verifica se node_modules existe
-if exist "%SCRIPT_DIR%node_modules" (
-    echo [OK] Dependencias ja instaladas
-    goto RUN_SCRIPT
-)
-
-echo [INFO] Instalando dependencias...
-echo.
-
-REM Instala dependencias usando npm portatil
-cd /d "%SCRIPT_DIR%"
-"%NODE_EXE%" "%NODE_DIR%\node_modules\npm\bin\npm-cli.js" install
-
-if errorlevel 1 (
-    echo.
-    echo [AVISO] Falha ao instalar dependencias via npm
-    echo [INFO] Continuando mesmo assim - dependencias podem nao ser necessarias
-    echo.
-) else (
-    echo.
-    echo [OK] Dependencias instaladas
+    echo [AVISO] package.json nao encontrado na raiz do projeto
+    echo [INFO] Certifique-se de que o package.json esta presente
     echo.
 )
 
