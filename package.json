@@ -1,7 +1,7 @@
 {
   "name": "recalcular-hash-xml",
   "version": "1.0.0",
-  "description": "Recalculador de hash MD5 para arquivos XML do padrão TISS - Sistema Unimed/PTU 3.0",
+  "description": "Recalculador de hash MD5 para arquivos PTU XML",
   "main": "src/recalcular-hash.js",
   "bin": {
     "recalcular-hash": "./src/recalcular-hash.js"
