@@ -4,6 +4,16 @@ const fs = require('fs');
 const crypto = require('crypto');
 const readline = require('readline');
 
+// Códigos de cor ANSI
+const colors = {
+    reset: '\x1b[0m',
+    blue: '\x1b[34m',
+    bright: '\x1b[1m',
+    green: '\x1b[32m',
+    yellow: '\x1b[33m',
+    red: '\x1b[31m'
+};
+
 /**
  * Calcula o hash MD5 de uma string
  * @param {string} content - Conteúdo para calcular o hash
@@ -64,7 +74,7 @@ function substituirHash(xmlContent, novoHash) {
 function criarBackup(caminhoArquivo) {
     const caminhoBackup = `${caminhoArquivo}.backup`;
     fs.copyFileSync(caminhoArquivo, caminhoBackup);
-    console.log(`✓ Backup criado: ${caminhoBackup}`);
+    console.log(`${colors.green}✓${colors.reset} Backup criado: ${caminhoBackup}`);
     return caminhoBackup;
 }
 
@@ -78,13 +88,13 @@ function processarArquivo(caminhoArquivo) {
 
     // Verificar se o arquivo existe
     if (!fs.existsSync(caminhoArquivo)) {
-        console.error(`✗ Erro: Arquivo não encontrado: ${caminhoArquivo}`);
+        console.error(`${colors.red}✗${colors.reset} Erro: Arquivo não encontrado: ${caminhoArquivo}`);
         process.exit(1);
     }
 
     // Ler o conteúdo do arquivo
     const conteudoOriginal = fs.readFileSync(caminhoArquivo, 'utf8');
-    console.log(`✓ Arquivo lido (${conteudoOriginal.length} caracteres)`);
+    console.log(`${colors.green}✓${colors.reset} Arquivo lido (${conteudoOriginal.length} caracteres)`);
 
     // Extrair o hash atual
     const hashAtualMatch = conteudoOriginal.match(/<[^:>]*:?hash>(.*?)<\/[^:>]*:?hash>/s);
@@ -94,7 +104,7 @@ function processarArquivo(caminhoArquivo) {
     // Extrair a string para cálculo do hash
     console.log('Extraindo valores do XML...');
     const stringParaHash = extrairValoresXML(conteudoOriginal);
-    console.log(`✓ String extraída (${stringParaHash.length} caracteres)`);
+    console.log(`${colors.green}✓${colors.reset} String extraída (${stringParaHash.length} caracteres)`);
     
     // Mostrar primeiros e últimos caracteres para debug
     if (process.env.DEBUG) {
@@ -107,15 +117,15 @@ function processarArquivo(caminhoArquivo) {
     
     // Calcular novo hash
     const novoHash = calcularMD5(stringParaHash);
-    console.log(`Novo hash:  ${novoHash}`);
+    console.log(`Novo hash:  ${colors.bright}${colors.blue}${novoHash}${colors.reset}`);
 
     // Verificar se o hash mudou
     if (hashAtual === novoHash) {
-        console.log('\n✓ O hash está correto. Nenhuma alteração necessária.');
+        console.log(`\n${colors.green}✓${colors.reset} O hash está correto. Nenhuma alteração necessária.`);
         return;
     }
 
-    console.log('\n! Hash diferente detectado. Atualizando arquivo...');
+    console.log(`\n${colors.yellow}!${colors.reset} Hash diferente detectado. Atualizando arquivo...`);
 
     // Criar backup
     criarBackup(caminhoArquivo);
@@ -125,7 +135,7 @@ function processarArquivo(caminhoArquivo) {
 
     // Salvar arquivo atualizado
     fs.writeFileSync(caminhoArquivo, conteudoAtualizado, 'utf8');
-    console.log(`✓ Arquivo atualizado com sucesso!`);
+    console.log(`${colors.green}✓${colors.reset} Arquivo atualizado com sucesso!`);
     
     console.log('\n=== PROCESSO CONCLUÍDO ===\n');
 }
@@ -152,8 +162,7 @@ async function solicitarArquivo() {
  */
 async function main() {
     console.log('╔═══════════════════════════════════════════╗');
-    console.log('║  RECALCULADOR DE HASH MD5 PARA XML       ║');
-    console.log('║     Sistema Unimed/TISS - PTU 3.0        ║');
+    console.log('║  RECALCULADOR DE HASH MD5 PARA PTU XML    ║');
     console.log('╚═══════════════════════════════════════════╝\n');
 
     // Verificar se foi passado arquivo como argumento
@@ -165,7 +174,7 @@ async function main() {
     }
 
     if (!caminhoArquivo) {
-        console.error('✗ Erro: Nenhum arquivo especificado.');
+        console.error(`${colors.red}✗${colors.reset} Erro: Nenhum arquivo especificado.`);
         console.log('\nUso:');
         console.log('  node recalcular-hash.js <caminho-do-arquivo>');
         console.log('  ou execute sem argumentos para modo interativo');
@@ -178,7 +187,7 @@ async function main() {
     try {
         processarArquivo(caminhoArquivo);
     } catch (erro) {
-        console.error(`\n✗ Erro ao processar arquivo: ${erro.message}`);
+        console.error(`\n${colors.red}✗${colors.reset} Erro ao processar arquivo: ${erro.message}`);
         console.error(erro.stack);
         process.exit(1);
     }
