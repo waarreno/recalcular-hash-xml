@@ -33,6 +33,15 @@ powershell -Command "& { [Net.ServicePointManager]::SecurityProtocol = [Net.Secu
 if errorlevel 1 (
     echo.
     echo [ERRO] Falha ao baixar Node.js
+    echo.
+    echo [RECOMENDACAO] Baixe manualmente o Node.js e extraia para continuar:
+    echo   1. Acesse: %NODE_DOWNLOAD%
+    echo   2. Baixe o arquivo ZIP
+    echo   3. Extraia o conteudo do ZIP
+    echo   4. Renomeie a pasta extraida para: node-portable
+    echo   5. Coloque a pasta node-portable no mesmo diretorio deste script
+    echo   6. Execute novamente este script
+    echo.
     pause
     exit /b 1
 )
