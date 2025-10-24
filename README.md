@@ -311,6 +311,7 @@ if %ERRORLEVEL% EQU 0 (
 
 ### Autor
 **Wárreno Hendrick Costa Lima Guimarães**
+
 Coordenador de Contas Médicas
 
 ### Licença
