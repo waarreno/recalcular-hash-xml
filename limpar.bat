@@ -3,10 +3,11 @@ chcp 65001 >nul
 setlocal enabledelayedexpansion
 
 echo.
-echo ===============================================
-echo              LIMPEZA DO SISTEMA
-echo         Recalculador de Hash MD5 XML
-echo ===============================================
+echo ==================================================
+echo                LIMPEZA DO SISTEMA
+echo           Recalculador de Hash MD5 XML
+echo   (c) 2025 Wárreno Hendrick Costa Lima Guimarães
+echo ==================================================
 echo.
 
 set "PROJETO_DIR=%~dp0"
@@ -44,7 +45,7 @@ if exist "%NODE_DIR%" (
     )
     echo [OK] Node.js portatil removido!
 ) else (
-    echo [INFO] Node.js portatil nao estava instalado.
+    echo [INFO] Node.js portatil nao encontrado ou ja removido.
 )
 
 echo.
@@ -75,13 +76,13 @@ if exist "%TEMP%\nodejs-extract" rmdir /S /Q "%TEMP%\nodejs-extract" 2>nul
 echo [OK] Limpeza concluida!
 
 echo.
-echo ===============================================
-echo         LIMPEZA CONCLUIDA COM SUCESSO
-echo ===============================================
+echo ==================================================
+echo           LIMPEZA CONCLUIDA COM SUCESSO
+echo ==================================================
 echo.
 echo Sistema limpo e pronto para reinstalacao.
 echo.
-echo ===============================================
+echo ==================================================
 echo.
 pause
 exit /b 0
