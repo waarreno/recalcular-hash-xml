@@ -5,7 +5,6 @@ setlocal enabledelayedexpansion
 echo.
 echo ===============================================
 echo [INFO] Iniciando aplicacao...
-echo.
 
 REM Define diretorios
 set "SCRIPT_DIR=%~dp0"
