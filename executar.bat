@@ -4,8 +4,7 @@ setlocal enabledelayedexpansion
 
 echo.
 echo ===============================================
-echo   RECALCULADOR DE HASH MD5 PARA PTU XML
-echo ===============================================
+echo [INFO] Iniciando aplicacao...
 echo.
 
 REM Define diretorios

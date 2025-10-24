@@ -161,9 +161,11 @@ async function solicitarArquivo() {
  * Função principal
  */
 async function main() {
-    console.log('╔═══════════════════════════════════════════╗');
-    console.log('║  RECALCULADOR DE HASH MD5 PARA PTU XML    ║');
-    console.log('╚═══════════════════════════════════════════╝\n');
+    console.log('╔══════════════════════════════════════════════════╗');
+    console.log('║      RECALCULADOR DE HASH MD5 PARA PTU XML       ║');
+    console.log('║  (c) 2025 Wárreno Hendrick Costa Lima Guimarães  ║');
+    console.log('║                  Versão 1.0.0                    ║');
+    console.log('╚══════════════════════════════════════════════════╝\n');
 
     // Verificar se foi passado arquivo como argumento
     let caminhoArquivo = process.argv[2];
