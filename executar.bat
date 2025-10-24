@@ -13,7 +13,7 @@ set "SCRIPT_DIR=%~dp0"
 set "NODE_DIR=%SCRIPT_DIR%node-portable"
 set "NODE_EXE=%NODE_DIR%\node.exe"
 set "NPM_CMD=%NODE_DIR%\npm.cmd"
-set "NODE_VERSION=22.11.0"
+set "NODE_VERSION=22.21.0"
 set "NODE_DOWNLOAD=https://nodejs.org/dist/v%NODE_VERSION%/node-v%NODE_VERSION%-win-x64.zip"
 set "NODE_ZIP=%SCRIPT_DIR%node-portable.zip"
 
@@ -45,8 +45,8 @@ if not exist "%NODE_ZIP%" (
 
 echo [INFO] Extraindo Node.js...
 
-REM Extrai o arquivo ZIP usando PowerShell
-powershell -Command "& { $ProgressPreference = 'SilentlyContinue'; Write-Host '[...] Extraindo arquivos...'; try { Expand-Archive -Path '%NODE_ZIP%' -DestinationPath '%SCRIPT_DIR%temp-node' -Force; Write-Host '[OK] Extracao concluida'; } catch { Write-Host '[ERRO] Erro na extracao: ' $_.Exception.Message; exit 1 } }"
+REM Extrai o arquivo ZIP usando .NET (mais rapido que Expand-Archive)
+powershell -Command "& { Add-Type -AssemblyName System.IO.Compression.FileSystem; $ProgressPreference = 'SilentlyContinue'; Write-Host '[...] Extraindo arquivos...'; try { [System.IO.Compression.ZipFile]::ExtractToDirectory('%NODE_ZIP%', '%SCRIPT_DIR%temp-node'); Write-Host '[OK] Extracao concluida'; } catch { Write-Host '[ERRO] Erro na extracao: ' $_.Exception.Message; exit 1 } }"
 
 if errorlevel 1 (
     echo [ERRO] Falha ao extrair Node.js
