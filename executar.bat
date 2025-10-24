@@ -4,6 +4,7 @@ setlocal enabledelayedexpansion
 
 echo.
 echo ===============================================
+echo.
 echo [INFO] Iniciando aplicacao...
 
 REM Define diretorios
