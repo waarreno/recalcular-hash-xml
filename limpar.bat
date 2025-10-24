@@ -54,7 +54,7 @@ if exist "%PROJETO_DIR%node_modules" (
     rmdir /S /Q "%PROJETO_DIR%node_modules" 2>nul
     echo [OK] node_modules removido!
 ) else (
-    echo [INFO] node_modules nao encontrado.
+    echo [INFO] node_modules nao encontrado ou ja removido.
 )
 
 echo.
@@ -64,7 +64,7 @@ if exist "%PROJETO_DIR%package-lock.json" (
     del "%PROJETO_DIR%package-lock.json" 2>nul
     echo [OK] package-lock.json removido!
 ) else (
-    echo [INFO] package-lock.json nao encontrado.
+    echo [INFO] package-lock.json nao encontrado ou ja removido.
 )
 
 echo.
