@@ -5,8 +5,8 @@ setlocal enabledelayedexpansion
 echo.
 echo ==================================================
 echo                LIMPEZA DO SISTEMA
-echo           Recalculador de Hash MD5 XML
-echo   (c) 2025 Wárreno Hendrick Costa Lima Guimarães
+echo         Recalculador de Hash MD5 PTU XML
+echo   (c) 2025 Warreno Hendrick Costa Lima Guimaraes
 echo ==================================================
 echo.
 
